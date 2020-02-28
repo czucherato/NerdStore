@@ -7,15 +7,15 @@ namespace NerdStore.Catalogo.Domain
     {
         protected Produto()
         {
+            Ativo = true;
             DataCadastro = DateTime.Now;
         }
 
-        public Produto(string nome, string descricao, bool ativo, decimal valor, string imagem, Categoria categoria, Dimensoes dimensoes)
+        public Produto(string nome, string descricao, decimal valor, string imagem, Categoria categoria, Dimensoes dimensoes)
             : this()
         {
             Nome = nome;
             Descricao = descricao;
-            Ativo = ativo;
             Valor = valor;
             Imagem = imagem;
             Categoria = categoria;

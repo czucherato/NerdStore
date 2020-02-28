@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.Catalogo.Domain.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.Catalogo.Data", "src\NerdStore.Catalogo.Data\NerdStore.Catalogo.Data.csproj", "{184E8188-AD90-4CC8-A663-A3E488EA82CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NerdStore.Catalogo.Application", "src\NerdStore.Catalogo.Application\NerdStore.Catalogo.Application.csproj", "{7FB457E4-6BD0-46D8-A804-F64CE8437264}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{184E8188-AD90-4CC8-A663-A3E488EA82CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{184E8188-AD90-4CC8-A663-A3E488EA82CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{184E8188-AD90-4CC8-A663-A3E488EA82CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FB457E4-6BD0-46D8-A804-F64CE8437264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FB457E4-6BD0-46D8-A804-F64CE8437264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FB457E4-6BD0-46D8-A804-F64CE8437264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FB457E4-6BD0-46D8-A804-F64CE8437264}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,6 +73,7 @@ Global
 		{78A15590-514D-4246-B8DE-DE61EA220038} = {5CBFFD82-0F74-423C-A549-D4154DB94666}
 		{9ABD9330-D445-46DF-A7B1-58E375D81112} = {78A15590-514D-4246-B8DE-DE61EA220038}
 		{184E8188-AD90-4CC8-A663-A3E488EA82CF} = {5CBFFD82-0F74-423C-A549-D4154DB94666}
+		{7FB457E4-6BD0-46D8-A804-F64CE8437264} = {5CBFFD82-0F74-423C-A549-D4154DB94666}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8AFBAE6B-B230-4581-84E5-1809B277F9A6}

@@ -13,7 +13,7 @@ namespace NerdStore.Catalogo.Domain.Tests
 
             var ex = Assert.Throws<DomainException>(() =>
             {
-                new Produto(string.Empty, "Descrição", false, 100, "Imagem", new Categoria("Categoria 1", 1), new Dimensoes(1, 1, 1));
+                new Produto(string.Empty, "Descrição", 100, "Imagem", new Categoria("Categoria 1", 1), new Dimensoes(1, 1, 1));
             });
 
             Assert.Equals("O campo Nome do produto não pode estar vazio", ex.Message);

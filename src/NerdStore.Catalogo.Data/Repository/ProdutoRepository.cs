@@ -40,7 +40,7 @@ namespace NerdStore.Catalogo.Data.Repository
             throw new NotImplementedException();
         }
 
-        public Task<Produto> ObterPorId(Guid id)
+        public Task<Produto> ObterProdutoPorId(Guid id)
         {
             throw new NotImplementedException();
         }
@@ -51,6 +51,11 @@ namespace NerdStore.Catalogo.Data.Repository
         }
 
         public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Categoria> ObterCategoriaPorCodigo(int codigo)
         {
             throw new NotImplementedException();
         }
