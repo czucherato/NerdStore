@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NerdStore.Vendas.Domain
+﻿namespace NerdStore.Vendas.Domain
 {
     public enum TipoDescontoVaucher
     {
+        Porcentagem = 0,
+        Valor = 1
     }
 }
