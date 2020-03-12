@@ -3,6 +3,7 @@ using NerdStore.Core.Bus;
 using NerdStore.Catalogo.Domain;
 using NerdStore.Catalogo.Domain.Events;
 using NerdStore.Catalogo.Data.Repository;
+using NerdStore.Vendas.Application.Commands;
 using NerdStore.Catalogo.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,12 +13,18 @@ namespace NerdStore.WebApp.MVC.Setup
     {
         public static void RegisterServices(this IServiceCollection services)
         {
-            services.AddScoped<IMediatrHandler, MediatrHandler>();
+            // Domain Bus (Mediator)
+            services.AddScoped<IMediatorHandler, MediatrHandler>();
+
+            // Catálogo
             services.AddScoped<IProdutoAppService, ProdutoAppService>();
             services.AddScoped<IProdutoRepository, ProdutoRepository>();
             services.AddScoped<IEstoqueService, EstoqueService>();
-            services.AddScoped<IMediatrHandler, MediatrHandler>();
+            
             services.AddScoped<INotificationHandler<ProdutoAbaixoEstoqueEvent>, ProdutoEventHandler>();
+
+            // Vendas
+            services.AddScoped<IRequestHandler<AdicionarItemPedidoCommand, bool>, PedidoCommandHandler>();
         }
     }
 }

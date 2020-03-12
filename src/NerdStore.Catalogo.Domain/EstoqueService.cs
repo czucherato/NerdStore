@@ -9,14 +9,14 @@ namespace NerdStore.Catalogo.Domain
     {
         public EstoqueService(
             IProdutoRepository produtoRepository,
-            IMediatrHandler bus)
+            IMediatorHandler bus)
         {
             _produtoRepository = produtoRepository;
             _bus = bus;
         }
 
         private readonly IProdutoRepository _produtoRepository;
-        private readonly IMediatrHandler _bus;
+        private readonly IMediatorHandler _bus;
 
         public async Task<bool> DebitarEstoque(Guid produtoId, int quantidade)
         {

@@ -4,9 +4,9 @@ using NerdStore.Catalogo.Application.Services;
 
 namespace NerdStore.WebApp.MVC.Controllers
 {
-    public class ProdutoController : Controller
+    public class VitrineController : Controller
     {
-        public ProdutoController(IProdutoAppService produtoAppService)
+        public VitrineController(IProdutoAppService produtoAppService)
         {
             _produtoAppService = produtoAppService;
         }
