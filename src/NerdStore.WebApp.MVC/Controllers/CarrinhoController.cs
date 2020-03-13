@@ -1,8 +1,8 @@
 ﻿using System;
-using NerdStore.Core.Bus;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using NerdStore.Vendas.Application.Commands;
+using NerdStore.Core.Communication.Mediator;
 using NerdStore.Catalogo.Application.Services;
 
 namespace NerdStore.WebApp.MVC.Controllers

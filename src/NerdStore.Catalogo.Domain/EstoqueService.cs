@@ -1,7 +1,7 @@
 ﻿using System;
-using NerdStore.Core.Bus;
 using System.Threading.Tasks;
 using NerdStore.Catalogo.Domain.Events;
+using NerdStore.Core.Communication.Mediator;
 
 namespace NerdStore.Catalogo.Domain
 {

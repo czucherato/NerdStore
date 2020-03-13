@@ -1,8 +1,8 @@
 ﻿using MediatR;
-using NerdStore.Core.Bus;
 using NerdStore.Catalogo.Domain;
 using NerdStore.Catalogo.Domain.Events;
 using NerdStore.Catalogo.Data.Repository;
+using NerdStore.Core.Communication.Mediator;
 using NerdStore.Vendas.Application.Commands;
 using NerdStore.Catalogo.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
