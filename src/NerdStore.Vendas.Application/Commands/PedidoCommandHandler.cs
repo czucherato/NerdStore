@@ -6,6 +6,9 @@ using NerdStore.Core.Messages;
 using NerdStore.Vendas.Domain;
 using NerdStore.Core.Communication.Mediator;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
+using NerdStore.Vendas.Application.Events;
+using System.Collections.Generic;
+using NerdStore.Core.Extensions;
 
 namespace NerdStore.Vendas.Application.Commands
 {
@@ -33,6 +36,7 @@ namespace NerdStore.Vendas.Application.Commands
                 pedido = Pedido.PedidoFactory.NovoPedidoRascunho(request.ClienteId);
                 pedido.AdicionarItem(pedidoItem);
                 _pedidoRepository.Adicionar(pedido);
+                pedido.AdicionarEvento(new PedidoRascunhoIniciadoEvent(request.ClienteId, pedido.Id));
             }
             else
             {
@@ -47,8 +51,12 @@ namespace NerdStore.Vendas.Application.Commands
                 {
                     _pedidoRepository.AdicionarItem(pedidoItem);
                 }
+
+                pedido.AdicionarEvento(new PedidoAtualizadoEvent(pedido.ClienteId, pedido.Id, pedido.ValorTotal));
             }
 
+            pedido.AdicionarEvento(new PedidoItemAdicionadoEvent(pedido.ClienteId, request.ProdutoId, request.Nome, pedido.Id, request.ValorUnitario, request.Quantidade));
+            await _mediatorHandler.PublicarEventos(pedido);
             return await _pedidoRepository.UnitOfWork.Commit();
         }
 

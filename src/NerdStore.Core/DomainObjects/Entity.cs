@@ -1,4 +1,6 @@
-﻿using System;
+﻿using NerdStore.Core.Messages;
+using System;
+using System.Collections.Generic;
 
 namespace NerdStore.Core.DomainObjects
 {
@@ -8,6 +10,9 @@ namespace NerdStore.Core.DomainObjects
         {
             Id = Guid.NewGuid();
         }
+
+        private readonly List<Event> _notificacoes;
+        public IReadOnlyCollection<Event> Notificacoes => _notificacoes?.AsReadOnly();
 
         public Guid Id { get; set; }
 
@@ -50,6 +55,21 @@ namespace NerdStore.Core.DomainObjects
         public virtual bool EhValido()
         {
             throw new NotImplementedException();
+        }
+
+        public void AdicionarEvento(Event @event)
+        {
+            _notificacoes.Add(@event);
+        }
+
+        public void RemoverEvento(Event @event)
+        {
+            _notificacoes.Remove(@event);
+        }
+
+        public void LimparEventos()
+        {
+            _notificacoes.Clear();
         }
     }
 }
