@@ -110,7 +110,7 @@ namespace NerdStore.Vendas.Application.Commands
 
         public async Task<bool> Handle(RemoverItemPedidoCommand request, CancellationToken cancellationToken)
         {
-            throw new System.NotImplementedException();
+            return await Task.FromResult(true);
         }
     }
 }
