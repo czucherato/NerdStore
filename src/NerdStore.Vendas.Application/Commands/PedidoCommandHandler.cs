@@ -77,6 +77,23 @@ namespace NerdStore.Vendas.Application.Commands
 
         public async Task<bool> Handle(AplicarVoucherPedidoCommand request, CancellationToken cancellationToken)
         {
+            if (!ValidarComando(request)) return false;
+
+            var pedido = await _pedidoRepository.ObterPedidoRascunhoPorClienteId(request.ClienteId);
+            if (pedido is null)
+            {
+                await _mediatorHandler.PublicarNotificacoes(new DomainNotification("pedido", "Pedido não encontrado!"));
+                return false;
+            }
+
+            var voucher = await _pedidoRepository.ObterVoucherPorCodido(request.CodigoVoucher);
+            if (voucher is null)
+            {
+                await _mediatorHandler.PublicarNotificacoes(new DomainNotification("pedido", "Voucher não encontrado!"));
+                return false;
+            }
+
+            //var voucherAplicacaoValidation = voucher.ValidarSeAplicavel();
             throw new System.NotImplementedException();
         }
 
