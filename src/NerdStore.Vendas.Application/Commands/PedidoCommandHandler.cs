@@ -12,6 +12,7 @@ using NerdStore.Core.Messages.CommonMessages.Notifications;
 namespace NerdStore.Vendas.Application.Commands
 {
     public class PedidoCommandHandler :
+        IRequestHandler<IniciarPedidoCommand, bool>,
         IRequestHandler<RemoverItemPedidoCommand, bool>,
         IRequestHandler<AdicionarItemPedidoCommand, bool>,
         IRequestHandler<AtualizarItemPedidoCommand, bool>,
@@ -166,6 +167,19 @@ namespace NerdStore.Vendas.Application.Commands
             _pedidoRepository.RemoverItem(pedidoItem);
             _pedidoRepository.Atualizar(pedido);
 
+            return await _pedidoRepository.UnitOfWork.Commit();
+        }
+
+        public async Task<bool> Handle(IniciarPedidoCommand request, CancellationToken cancellationToken)
+        {
+            if (!ValidarComando(request)) return false;
+
+            var pedido = await _pedidoRepository.ObterPedidoRascunhoPorClienteId(request.ClienteId);
+            pedido.IniciarPedido();
+
+
+
+            _pedidoRepository.Atualizar(pedido);
             return await _pedidoRepository.UnitOfWork.Commit();
         }
     }

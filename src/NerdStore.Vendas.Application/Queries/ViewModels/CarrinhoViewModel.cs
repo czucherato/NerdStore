@@ -11,7 +11,7 @@ namespace NerdStore.Vendas.Application.Queries.ViewModels
 
         public decimal SubTotal { get; set; }
 
-        public decimal ValorTotals { get; set; }
+        public decimal ValorTotal { get; set; }
 
         public decimal ValorDesconto { get; set; }
 
