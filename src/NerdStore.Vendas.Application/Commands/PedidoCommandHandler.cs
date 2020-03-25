@@ -93,8 +93,23 @@ namespace NerdStore.Vendas.Application.Commands
                 return false;
             }
 
-            //var voucherAplicacaoValidation = voucher.ValidarSeAplicavel();
-            throw new System.NotImplementedException();
+            var voucherAplicacaoValidation = pedido.AplicarVoucher(voucher);
+            if (!voucherAplicacaoValidation.IsValid)
+            {
+                foreach (var error in voucherAplicacaoValidation.Errors)
+                {
+                    await _mediatorHandler.PublicarNotificacoes(new DomainNotification(error.ErrorCode, error.ErrorMessage));
+                }
+
+                return false;
+            }
+
+            pedido.AdicionarEvento(new PedidoAtualizadoEvent(pedido.ClienteId, pedido.Id, pedido.ValorTotal));
+            pedido.AdicionarEvento(new VoucherAplicadoPedidoEvent(request.ClienteId, pedido.Id, voucher.Id));
+
+            _pedidoRepository.Atualizar(pedido);
+
+            return await _pedidoRepository.UnitOfWork.Commit();
         }
 
         public async Task<bool> Handle(AtualizarItemPedidoCommand request, CancellationToken cancellationToken)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using FluentValidation.Results;
 using System.Collections.Generic;
 using NerdStore.Core.DomainObjects;
 
@@ -42,11 +43,15 @@ namespace NerdStore.Vendas.Domain
 
         public Voucher Voucher { get; private set; }
 
-        public void AplicarVoucher(Voucher voucher)
+        public ValidationResult AplicarVoucher(Voucher voucher)
         {
+            var validationResult = voucher.ValidarSeAplicavel();
+            if (!validationResult.IsValid) return validationResult;
             Voucher = voucher;
             VoucherUtilizado = true;
             CalcularValorPedido();
+
+            return validationResult;
         }
 
         public void CalcularValorPedido()

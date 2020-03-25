@@ -2,12 +2,12 @@
 using NerdStore.Catalogo.Domain;
 using NerdStore.Catalogo.Domain.Events;
 using NerdStore.Catalogo.Data.Repository;
+using NerdStore.Vendas.Application.Events;
 using NerdStore.Core.Communication.Mediator;
 using NerdStore.Vendas.Application.Commands;
 using NerdStore.Catalogo.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
-using NerdStore.Vendas.Application.Events;
 
 namespace NerdStore.WebApp.MVC.Setup
 {
@@ -31,6 +31,11 @@ namespace NerdStore.WebApp.MVC.Setup
             // Vendas
             services.AddScoped<IRequestHandler<AdicionarItemPedidoCommand, bool>, PedidoCommandHandler>();
             //services.AddScoped<IPedidoRepository, PedidoRepository>();
+
+            services.AddScoped<IRequestHandler<AdicionarItemPedidoCommand, bool>, PedidoCommandHandler>();
+            services.AddScoped<IRequestHandler<AtualizarItemPedidoCommand, bool>, PedidoCommandHandler>();
+            services.AddScoped<IRequestHandler<RemoverItemPedidoCommand, bool>, PedidoCommandHandler>();
+            services.AddScoped<IRequestHandler<AplicarVoucherPedidoCommand, bool>, PedidoCommandHandler>();
 
             services.AddScoped<INotificationHandler<PedidoAtualizadoEvent>, PedidoEventHandler>();
             services.AddScoped<INotificationHandler<PedidoRascunhoIniciadoEvent>, PedidoEventHandler>();

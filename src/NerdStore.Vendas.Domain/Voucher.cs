@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using FluentValidation.Results;
 using NerdStore.Core.DomainObjects;
 
 namespace NerdStore.Vendas.Domain
@@ -26,6 +26,9 @@ namespace NerdStore.Vendas.Domain
 
         public bool Utilizado { get; private set; }
 
-        ICollection<Pedido> Pedido { get; set; }
+        internal ValidationResult ValidarSeAplicavel()
+        {
+            return new VoucherAplicavelValidation().Validate(this);
+        }
     }
 }

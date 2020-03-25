@@ -5,16 +5,13 @@ namespace NerdStore.Vendas.Application.Commands
 {
     public class AplicarVoucherPedidoCommand : Command
     {
-        public AplicarVoucherPedidoCommand(Guid clienteId, Guid pedidoId, string codigoVoucher)
+        public AplicarVoucherPedidoCommand(Guid clienteId, string codigoVoucher)
         {
             ClienteId = clienteId;
-            PedidoId = pedidoId;
             CodigoVoucher = codigoVoucher;
         }
 
         public Guid ClienteId { get; set; }
-
-        public Guid PedidoId { get; set; }
 
         public string CodigoVoucher { get; set; }
 
