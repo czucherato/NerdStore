@@ -5,9 +5,12 @@ using System.Threading.Tasks;
 using NerdStore.Core.Messages;
 using NerdStore.Vendas.Domain;
 using NerdStore.Core.Extensions;
+using System.Collections.Generic;
+using NerdStore.Core.DomainObjects.DTO;
 using NerdStore.Vendas.Application.Events;
 using NerdStore.Core.Communication.Mediator;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
+using NerdStore.Core.Messages.CommonMessages.IntegrationEvents;
 
 namespace NerdStore.Vendas.Application.Commands
 {
@@ -177,7 +180,11 @@ namespace NerdStore.Vendas.Application.Commands
             var pedido = await _pedidoRepository.ObterPedidoRascunhoPorClienteId(request.ClienteId);
             pedido.IniciarPedido();
 
+            var itensList = new List<Item>();
+            pedido.PedidoItens.ForEach(i => itensList.Add(new Item { Id = i.ProdutoId, Quantidade = i.Quantidade }));
+            var listaProdutosPedidos = new ListaProdutosPedido { PedidoId = pedido.Id, Itens = itensList };
 
+            pedido.AdicionarEvento(new PedidoIniciadoEvent(pedido.Id, pedido.ClienteId, listaProdutosPedidos, pedido.ValorTotal, request.NomeCartao, request.NumeroCartao, request.ExpiracaoCartao, request.CvvCartao));
 
             _pedidoRepository.Atualizar(pedido);
             return await _pedidoRepository.UnitOfWork.Commit();
