@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using NerdStore.Core.DomainObjects.DTO;
 using NerdStore.Core.Communication.Mediator;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
+using NerdStore.Core.Messages.CommonMessages.IntegrationEvents;
 
 namespace NerdStore.Pagamentos.Business
 {
