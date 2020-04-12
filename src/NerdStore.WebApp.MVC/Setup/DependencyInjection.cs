@@ -9,6 +9,7 @@ using NerdStore.Vendas.Application.Commands;
 using NerdStore.Catalogo.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using NerdStore.Core.Messages.CommonMessages.Notifications;
+using NerdStore.Core.Data.EventSourcing;
 
 namespace NerdStore.WebApp.MVC.Setup
 {
@@ -44,6 +45,7 @@ namespace NerdStore.WebApp.MVC.Setup
 
             // Event Sourcing
             services.AddSingleton<IEventStoreService, EventStoreService>();
+            services.AddSingleton<IEventSourcingRepository, EventSourcingRepository>();
         }
     }
 }
